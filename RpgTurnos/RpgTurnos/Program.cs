@@ -8,6 +8,8 @@ namespace RpgTurnos
         {
             Personagem Char = new Personagem();
             Char.criarPersonagem();
+            Itens Equips = new Itens();
+            Equips.cadastrarItem();
         }
     }
 }
