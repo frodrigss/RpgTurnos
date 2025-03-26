@@ -6,10 +6,18 @@ namespace RpgTurnos
     {
         static void Main(string[] args)
         {
+            // Criação do personagem
             Personagem Char = new Personagem();
             Char.criarPersonagem();
-            Itens Equips = new Itens();
-            Equips.cadastrarItem();
+
+            // Aguarda o usuário pressionar Enter
+            Console.WriteLine("Pressione Enter para iniciar o jogo...");
+            Console.ReadLine();
+            Console.Clear();
+
+            // Inicializa o mapa e o jogo
+            Mapa mapa = new Mapa(Char);
+            mapa.iniciarJogo();
         }
     }
 }

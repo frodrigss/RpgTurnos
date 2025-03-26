@@ -14,16 +14,16 @@ namespace RpgTurnos
 
     public class Personagem
     {
-        private string nome;
-        private classePersonagem classe;
-        private int vida;
-        private int energia;
-        private int ataque;
-        private int resistencia;
-        private int nivel;
-        private int experiencia;
-        private int vidaPorNivel;
-        private int energiaPorNivel;
+        public string nome;
+        public classePersonagem classe;
+        public int vida;
+        public int energia;
+        public int ataque;
+        public int resistencia;
+        public int nivel;
+        public int experiencia;
+        public int vidaPorNivel;
+        public int energiaPorNivel;
 
         public void criarPersonagem()
         {
@@ -160,7 +160,6 @@ namespace RpgTurnos
             Console.WriteLine($"Resistência: {resistencia}");
             Console.WriteLine($"Vida por nível: {vidaPorNivel}");
             Console.WriteLine($"Energia por nível: {energiaPorNivel}");
-            Console.ReadKey();
         }
     }
 }
