@@ -23,6 +23,7 @@ namespace RpgTurnos
                     Console.WriteLine("Comandos disponíveis:");
                     Console.WriteLine("!m - Mostrar locais disponíveis para viajar.");
                     Console.WriteLine("!m [nome do local] - Viajar para o local especificado.");
+                    Console.WriteLine("!a - Mostrar atributos do personagem.");
                 }
                 else if (comando == "!m")
                 {
@@ -33,11 +34,30 @@ namespace RpgTurnos
                     string lugar = comando.Substring(3).Trim();
                     _mapa.viajarPara(lugar);
                 }
+                else if (comando == "!a")
+                {
+                    MostrarAtributosPersonagem();
+                }
                 else
                 {
                     Console.WriteLine("Comando não reconhecido. Digite 'help' para ver os comandos.");
                 }
             }
+        }
+
+        private void MostrarAtributosPersonagem()
+        {
+            var personagem = _mapa.Personagem;
+            Console.WriteLine($"Nome: {personagem.nome}");
+            Console.WriteLine($"Classe: {personagem.classe}");
+            Console.WriteLine($"Vida: {personagem.vida}");
+            Console.WriteLine($"Energia: {personagem.energia}");
+            Console.WriteLine($"Ataque: {personagem.ataque}");
+            Console.WriteLine($"Resistência: {personagem.resistencia}");
+            Console.WriteLine($"Nível: {personagem.nivel}");
+            Console.WriteLine($"Experiência: {personagem.experiencia}");
+            Console.WriteLine($"Vida por Nível: {personagem.vidaPorNivel}");
+            Console.WriteLine($"Energia por Nível: {personagem.energiaPorNivel}");
         }
     }
 }

@@ -6,18 +6,34 @@ namespace RpgTurnos
     {
         static void Main(string[] args)
         {
-            // Criação do personagem
-            Personagem Char = new Personagem();
-            Char.criarPersonagem();
+            while (true)
+            {
+                Console.WriteLine("Deseja começar um novo jogo? (s para sim, n para não): ");
+                string resposta = Console.ReadLine().ToLower();
 
-            // Aguarda o usuário pressionar Enter
-            Console.WriteLine("Pressione Enter para iniciar o jogo...");
-            Console.ReadLine();
-            Console.Clear();
+                if (resposta == "s")
+                {
+                    Console.Clear();
+                    Personagem Char = new Personagem();
+                    Char.criarPersonagem();
 
-            // Inicializa o mapa e o jogo
-            Mapa mapa = new Mapa(Char);
-            mapa.iniciarJogo();
+                    Console.WriteLine("Pressione Enter para iniciar o jogo...");
+                    Console.ReadLine();
+                    Console.Clear();
+
+                    Mapa mapa = new Mapa(Char);
+                    mapa.iniciarJogo();
+                }
+                else if (resposta == "n")
+                {
+                    Console.WriteLine("Saindo do jogo...");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Opção inválida, por favor digite 's' ou 'n'.");
+                }
+            }
         }
     }
 }

@@ -4,23 +4,24 @@ namespace RpgTurnos
 {
     public class Mapa
     {
+        public Personagem Personagem { get; private set; }
+
         private string[] locais;
         private bool[,] conexoes;
         public string inicioLocal;
-        private Personagem personagem;
 
         public Mapa(Personagem personagem)
         {
-            this.personagem = personagem;
+            this.Personagem = personagem;
             inicioLocal = "Cidade central";
             locais = new string[]
             {
-                "Cidade central",
-                "Minas esquecidas",
-                "Porto",
-                "Cidade da floresta",
-                "Deserto sem fim",
-                "Ilha solitária"
+            "Cidade central",
+            "Minas esquecidas",
+            "Porto",
+            "Cidade da floresta",
+            "Deserto sem fim",
+            "Ilha solitária"
             };
 
             conexoes = new bool[locais.Length, locais.Length];
@@ -46,7 +47,7 @@ namespace RpgTurnos
 
         public void iniciarJogo()
         {
-            Console.WriteLine($"Bem-vindo, {personagem.nome}! Você está na {inicioLocal}. Digite 'help' para ver os comandos.");
+            Console.WriteLine($"Bem-vindo, {Personagem.nome}! Você está na {inicioLocal}. Digite 'help' para ver os comandos.");
             Comandos comandos = new Comandos(this);
             comandos.Processar();
         }
@@ -87,6 +88,26 @@ namespace RpgTurnos
                 inicioLocal = locais[indiceDestino];
                 Console.Clear();
                 Console.WriteLine($"Você viajou para {inicioLocal}!");
+
+                // Chama os eventos dependendo do local
+                Eventos eventos = new Eventos(Personagem);
+
+                if (inicioLocal == "Minas esquecidas")
+                {
+                    eventos.GerarEvento(); // Gera o evento de Zumbi Antigo
+                }
+                else if (inicioLocal == "Deserto sem fim")
+                {
+                    eventos.GerarEvento(); // Gera o evento de Múmia do Deserto
+                }
+                else if (inicioLocal == "Porto")
+                {
+                    eventos.GerarEventoPorto(); // Gera o evento de Viajante Misterioso
+                }
+                else if (inicioLocal == "Ilha solitária")
+                {
+                    eventos.GerarEventoIlha(); // Gera o evento de Cardume de Piranhas
+                }
             }
             else
             {
@@ -94,4 +115,5 @@ namespace RpgTurnos
             }
         }
     }
+
 }
